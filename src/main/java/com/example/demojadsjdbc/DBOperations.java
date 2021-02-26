@@ -39,13 +39,12 @@ public class DBOperations{
 
          PreparedStatement statement = connection.prepareStatement("INSERT INTO my_books(book_name,author_name,cost)"+
                          "VALUES(?,?,?)");
-         statement.setString(1,book.getBook_name());   // here we are manually mapping/putting the values from my
-         statement.setString(2,book.getAuthor_name());  // java object to my sql table.
+         statement.setString(1,book.getBook_name());   
+         statement.setString(2,book.getAuthor_name()); 
          statement.setInt(3,book.getCost());
-          // since we already used PreparedStatement the new book gets inserted after execution of preparedStatement is done.
-         // now we don't need to write the sql query in statement.execute(), .executeUpdate
-         int rows = statement.executeUpdate(); // it gives an integer result i.e the no. of rows affected/returned.
-               // .executeUpdate in an inbuilt function in PreparedStatement interface of java.sql.
+         
+         int rows = statement.executeUpdate();
+              
          if(rows >= 1) System.out.println("-->" + "rows returned : " + rows);
          else System.out.println("Unable to insert into the table");
 
